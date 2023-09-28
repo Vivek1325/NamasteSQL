@@ -1,0 +1,30 @@
+1)https://datalemur.com/questions/signup-confirmation-rate
+2)https://datalemur.com/questions/top-fans-rank
+3)https://datalemur.com/questions/yoy-growth-rate
+     WITH cte AS (
+    SELECT EXTRACT(YEAR FROM transaction_date) AS year, 
+           product_id, spend
+    FROM user_transactions
+)
+SELECT c1.year, c1.product_id, c1.spend AS curr_year_spend, 
+       c2.spend AS prev_year_spend, 
+       ROUND(100.0 * (c1.spend - c2.spend) / c2.spend, 2) AS yoy_rate
+FROM cte c1 LEFT JOIN cte c2
+ON c1.product_id = c2.product_id AND
+c1.year - c2.year = 1
+ORDER BY c1.product_id, c1.year
+
+4) how to remove duplicate columns from  a table
+ 1st approach   create table temp_table as
+		(select * from master) 
+		union
+		(select * from master)
+
+2nd approach    SELECT *
+		FROM your_table
+		GROUP BY column1, column2, ..., columnN
+		HAVING COUNT(*) > 1;
+
+3rd approach   CREATE TABLE temp_table AS
+	       SELECT DISTINCT * FROM your_table;
+	

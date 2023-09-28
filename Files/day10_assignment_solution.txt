@@ -125,7 +125,7 @@ cast(order_date as date) -> order_date::date
 
 7-https://datalemur.com/questions/sql-highest-grossing
 
-8-https://datalemur.com/questions/top-drugs-sold
+8-https://datalemur.com/questions/top-drugs-sold -- premium
 
 9-https://datalemur.com/questions/yoy-growth-rate
 
